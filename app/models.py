@@ -20,9 +20,9 @@ class Product(db.Model):
     name = db.Column(db.String(64), index=True, unique=True)
     description = db.Column(db.String(2048), index=True)
     url = db.Column(db.VARCHAR(512))
-    categoryID = db.Column(db.String, db.ForeignKey('category.id'))
     favorite = db.Column(db.Boolean, default=False, nullable=False)
     category = db.relationship('Category', backref='product', lazy=True)
+    categoryID = db.Column(db.String, db.ForeignKey('category.id'))
     p2us = db.relationship('ProductToUser', back_populates='product', lazy='dynamic')
 
     def __repr__(self):
@@ -31,9 +31,9 @@ class Product(db.Model):
 
 class Price(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    productID = db.Column(db.Integer, db.ForeignKey('product.id'))
     price = db.Column(db.Integer)
     datetime = db.Column(db.DateTime)
+    productID = db.Column(db.Integer, db.ForeignKey('product.id'))
 
 
 class Category(db.Model):
