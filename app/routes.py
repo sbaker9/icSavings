@@ -17,7 +17,7 @@ def before_request():
 @app.route('/index')
 @login_required
 def index():
-    return "Hello, World!"
+    return render_template('index.html')
 
 
 @app.route('/reset_db')
@@ -127,7 +127,6 @@ def reset_db():
     db.session.commit()
 
     return redirect(url_for('index'))
-    return render_template('index.html')
 
 
 @app.route('/main')
