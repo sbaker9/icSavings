@@ -23,6 +23,7 @@ class Product(db.Model):
     favorite = db.Column(db.Boolean, default=False, nullable=False)
     category = db.relationship('Category', backref='product', lazy=True)
     categoryID = db.Column(db.String, db.ForeignKey('category.id'))
+    image = db.Column(db.VARCHAR(512))
     p2us = db.relationship('ProductToUser', back_populates='product', lazy='dynamic')
 
     def __repr__(self):
