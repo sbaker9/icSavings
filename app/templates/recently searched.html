@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-</body>
-</html>
+{% block app_content %}
+    <div>
+            <p><h2><b>Recently Searched Products</b></h2></p>
+            {% for product in searched_products %}
+                <p> <a href="/recently searched/{{ product.name }}">{{ product.name }}</a></p>
+            {% endfor %}
+    </div>
+{% endblock %}
