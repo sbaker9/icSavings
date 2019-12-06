@@ -175,3 +175,24 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
+@app.route('/recently searched', methods=['GET', 'POST'])
+@login_required
+def recently():
+    products = Product.query.all()
+
+    return render_template('recently searched.html', searched_products=products)
+
+
+@app.route('/product page', methods=['GET', 'POST'])
+@login_required
+def product(name):
+
+    new_product = Product.query.filter_by(name=name).first()
+
+    return render_template('product page.html', product=new_product)
+
+
+
+
+
+

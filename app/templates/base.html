@@ -1,4 +1,8 @@
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 {% extends 'bootstrap/base.html' %}
+
 
     {% block title %}
         {% if title %}{{ title }} IC Savings {% else %}Welcome to IC Savings!{% endif %}
@@ -14,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('index') }}">Ithaca Music</a>
+                <a class="navbar-brand" href="{{ url_for('index') }}">IC Savings</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
@@ -29,4 +33,13 @@
             </div>
         </div>
     </nav>
-{% endblock %}
+    {% endblock %}
+
+    {% block app_content%}
+        <div class="center-block">Start Saving!</div>
+        <a href="/product page/{{ product.name }}">{{ product.name }}
+            <button type="button" class="btn btn-warning btn-large center-block" data-toggle="button" aria-pressed="false" autocomplete="off">
+            Search
+            </button>
+        </a>
+    {% endblock %}
