@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block app_content %}
+    <div class="center-block">Start Saving!</div>
+
+        <a href="/product page/{{ product.name }}">{{ product.name }}
+            <button type="button" class="btn btn-warning btn-large center-block" data-toggle="button" aria-pressed="false" autocomplete="off">
+            Search
+            </button>
+        </a>
+
     <div>
         <h2><b>Hello IC Savings user {{ current_user.username }}!</b></h2>
         Find out about the best Amazon Deals! Right here!

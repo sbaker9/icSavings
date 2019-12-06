@@ -35,11 +35,8 @@
     </nav>
     {% endblock %}
 
-    {% block app_content%}
-        <div class="center-block">Start Saving!</div>
-        <a href="/product page/{{ product.name }}">{{ product.name }}
-            <button type="button" class="btn btn-warning btn-large center-block" data-toggle="button" aria-pressed="false" autocomplete="off">
-            Search
-            </button>
-        </a>
-    {% endblock %}
+{% block content %}
+
+
+    {% block app_content %} {% endblock %}
+{% endblock %}
