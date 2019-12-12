@@ -19,10 +19,11 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
     description = db.Column(db.String(2048), index=True)
-    url = db.Column(db.VARCHAR(512))
+    url = db.Column(db.String(512))
     favorite = db.Column(db.Boolean, default=False, nullable=False)
     category = db.relationship('Category', backref='product', lazy=True)
-    categoryID = db.Column(db.String, db.ForeignKey('category.id'))
+    categoryID = db.Column(db.Integer, db.ForeignKey('category.id'))
+    image = db.Column(db.String(512))
     p2us = db.relationship('ProductToUser', back_populates='product', lazy='dynamic')
 
     def __repr__(self):

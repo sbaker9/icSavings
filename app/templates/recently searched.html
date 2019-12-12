@@ -5,7 +5,7 @@
     <div>
             <p><h2><b>Recently Searched Products</b></h2></p>
             {% for product in searched_products %}
-                <p> <a href="/recently searched/{{ product.name }}">{{ product.name }}</a></p>
+                <p> <a href={{ url_for('product', name=product.name) }}>{{ product.name }}</a></p>
             {% endfor %}
     </div>
 {% endblock %}

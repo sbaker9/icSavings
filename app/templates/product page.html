@@ -1,39 +1,39 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
-{% block app_content%}
-        <a href="{{ url_for('recently searched') }}">
-            <button type="button" class="btn btn-warning btn-large center-block" data-toggle="button" aria-pressed="false" autocomplete="off">
-            Back to Products
-            </button>
-        </a>
-        <div class="container">
-          <h2>Modal Example</h2>
-          <!-- Trigger the modal with a button -->
-          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Share!</button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Who would you like to share {{ product.name }} with? </h4>
-                </div>
-                <div class="modal-body">
-                  <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Send</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-{% endblock %}
+{#{% block app_content%}#}
+{#        <a href="{{ url_for('recently searched') }}">#}
+{#            <button type="button" class="btn btn-warning btn-large center-block" data-toggle="button" aria-pressed="false" autocomplete="off">#}
+{#            Back to Products#}
+{#            </button>#}
+{#        </a>#}
+{#        <div class="container">#}
+{#          <h2>Modal Example</h2>#}
+{#          <!-- Trigger the modal with a button -->#}
+{#          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Share!</button>#}
+{##}
+{#          <!-- Modal -->#}
+{#          <div class="modal fade" id="myModal" role="dialog">#}
+{#            <div class="modal-dialog">#}
+{##}
+{#              <!-- Modal content-->#}
+{#              <div class="modal-content">#}
+{#                <div class="modal-header">#}
+{#                  <button type="button" class="close" data-dismiss="modal">&times;</button>#}
+{#                  <h4 class="modal-title">Who would you like to share {{ product.name }} with? </h4>#}
+{#                </div>#}
+{#                <div class="modal-body">#}
+{#                  <p>Some text in the modal.</p>#}
+{#                </div>#}
+{#                <div class="modal-footer">#}
+{#                  <button type="button" class="btn btn-default" data-dismiss="modal">Send</button>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#{% endblock %}#}
 
 {% block app_content %}
     <div>
@@ -44,12 +44,14 @@
         <br>
         <b>Description: </b>{{ product.description }}
         <br>
+        <b>Price Track: </b> {{ graph }}
+        <br>
         <b>Related Products: </b>
 
             <ul>
-               {% for products in category.products %}
-                <li><a href="/product page/{{ product.name }}">{{ product.name }}</a></li>
-               {% endfor %}
+                {% for p in related_products %}
+                <li><a href="/product page/{{ p.name }}">{{ p.name }}</a></li>
+                {% endfor %}
             </ul>
 
     </div>
