@@ -3,9 +3,10 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm
+from app.forms import URLForm, LoginForm, RegistrationForm
 from app.models import User, Product, Price, ProductToUser, Category
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
+
 
 @app.before_request
 def before_request():
@@ -13,11 +14,17 @@ def before_request():
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
 
+
 @app.route('/')
-@app.route('/index')
-@login_required
+@app.route('/index', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+
+    form = URLForm()
+
+    form.name.choices = [(a.id, a.name) for a in Product.query.order_by('name')]
+
+    if form.validate_on_submit():
+        return render_template('/product page/<name>', form=form)
 
 
 @app.route('/reset_db')
@@ -212,16 +219,14 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-@app.route('/recently searched', methods=['GET', 'POST'])
-@login_required
+@app.route('/recently-searched', methods=['GET', 'POST'])
 def recently():
     products = Product.query.all()
 
-    return render_template('recently searched.html', searched_products=products)
+    return render_template('recently-searched.html', searched_products=products)
 
 
-@app.route('/product page/<name>', methods=['GET', 'POST'])
-@login_required
+@app.route('/product-page/<name>', methods=['GET', 'POST'])
 def product(name):
 
     new_product = Product.query.filter_by(name=name).first()
@@ -242,11 +247,10 @@ def product(name):
     plt.ylabel('Price')
     graph = plt.show()
 
-    return render_template('product page.html', product=new_product, prices=new_prices, category=new_category,
-                           related_products=related_products, gaph=graph)
+    return render_template('product-page.html', product=new_product, prices=new_prices, category=new_category,
+                           related_products=related_products, graph=graph)
 
 
-@app.route('/saved products', methods=['GET', 'POST'])
-@login_required
+@app.route('/saved-products', methods=['GET', 'POST'])
 def saved_products():
-    return render_template('404.html')
+    return render_template('saved-products.html')

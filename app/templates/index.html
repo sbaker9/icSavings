@@ -1,13 +1,20 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
     <div class="center-block">Start Saving!</div>
 
-{#        <a href="/product page/{{ product.name }}">{{ product.name }}#}
-{#            <button type="button" class="btn btn-warning btn-large center-block" data-toggle="button" aria-pressed="false" autocomplete="off">#}
-{#            Search#}
-{#            </button>#}
-{#        </a>#}
+        <div class="row">
+            <div class="col-md-4">
+                {{ wtf.quick_form(form) }}
+            </div>
+        </div>
+
+        <a href="/product page/{{ product.name }}">{{ product.name }}
+            <button type="button" class="btn btn-warning btn-large center-block" data-toggle="button" aria-pressed="false" autocomplete="off">#}
+           Search
+           </button>
+       </a>
 
     <div>
         <h2><b>Hello IC Savings user {{ current_user.username }}!</b></h2>
