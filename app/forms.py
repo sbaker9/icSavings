@@ -1,9 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SelectMultipleField, SubmitField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, \
     Length
 from app.models import User
 
+class URLForm(FlaskForm):
+    name = SelectMultipleField('Product', coerce=int, validators=[DataRequired()])
+    submit = SubmitField('Create New Event')
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
