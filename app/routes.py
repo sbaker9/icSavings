@@ -1,11 +1,10 @@
 from datetime import datetime
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, json
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import URLForm, LoginForm, RegistrationForm
 from app.models import User, Product, Price, ProductToUser, Category
-#import matplotlib.pyplot as plt
 
 
 @app.before_request
@@ -25,7 +24,7 @@ def index():
 
     if form.validate_on_submit():
         return render_template('/product page/<name>', form=form)
-
+    return render_template('index.html', form=form, product=Product)
 
 @app.route('/reset_db')
 def reset_db():
@@ -45,7 +44,6 @@ def reset_db():
     db.session.add(c1)
     db.session.add(c2)
     db.session.commit()
-
 
     a1 = Product(name="Nintendo Switch with Neon Blue and Neon Red Joy‑Con",
                  description="Play your way with the Nintendo Switch gaming system. Whether you’re at home or on the "
@@ -139,7 +137,6 @@ def reset_db():
     db.session.add(v23)
     db.session.add(v24)
     db.session.add(v25)
-
 
     pu1 = ProductToUser(userID=1, productID=1)
     pu2 = ProductToUser(userID=1, productID=2)
@@ -237,18 +234,18 @@ def product(name):
 
     related_products = Product.query.filter_by(categoryID=new_category.id).all()
 
-    x = []
-    y = []
-    for price in new_prices:
-        x.append(price.datetime)
-        y.append(price.price)
-    plt.plot(x, y)
-    plt.xlabel('Date')
-    plt.ylabel('Price')
-    graph = plt.show()
+    # x = []
+    # y = []
+    # for price in new_prices:
+    #     x.append(price.datetime)
+    #     y.append(price.price)
+    # plt.plot(x, y)
+    # plt.xlabel('Date')
+    # plt.ylabel('Price')
+    # graph = plt.show()
 
     return render_template('product-page.html', product=new_product, prices=new_prices, category=new_category,
-                           related_products=related_products, graph=graph)
+                           related_products=related_products)
 
 
 @app.route('/saved-products', methods=['GET', 'POST'])

@@ -26,6 +26,7 @@
                         <li><a href="{{ url_for('register') }}">Register</a></li>
                         <li><a href="{{ url_for('login') }}">Login</a></li>
                     {% else %}
+                        <li><a href="{{ url_for('recently') }}">Recently Searched</a></li>
                         <li><a href="{{ url_for('saved_products') }}">Saved Products</a></li>
                         <li><a href="{{ url_for('logout') }}">Logout</a></li>
                     {% endif %}

@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
 {#{% block app_content%}#}
 {#        <a href="{{ url_for('recently searched') }}">#}
 {#            <button type="button" class="btn btn-warning btn-large center-block" data-toggle="button" aria-pressed="false" autocomplete="off">#}
@@ -20,7 +23,7 @@
 {#              <div class="modal-content">#}
 {#                <div class="modal-header">#}
 {#                  <button type="button" class="close" data-dismiss="modal">&times;</button>#}
-{#                  <h4 class="modal-title">Who would you like to share {{ product.name }} with? </h4>#}
+{#                  <h4 class="modal-title">Who would you like to share {{ product.name }} with? </h4> #}
 {#                </div>#}
 {#                <div class="modal-body">#}
 {#                  <p>Some text in the modal.</p>#}
@@ -33,18 +36,29 @@
 {#          </div>#}
 {#        </div>#}
 {##}
-{#{% endblock %}#}
+{# {% endblock %} #}
 
 {% block app_content %}
     <div>
 
         <b>Product Name: </b>{{ product.name }}
         <br>
+        <b>Purchase Page: </b>{{ product.url }}
+        <br><br>
+        <img class="" src="product.image" alt="Product Image">
+        <br><br>
         <b>Category: </b>{{ product.category }}
         <br>
         <b>Description: </b>{{ product.description }}
         <br>
-        <b>Price Track: </b> {{ graph }}
+        <b>Price Track: </b>
+        <script type="text/javascript">
+        // setup some JSON to use
+        var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        })
+        document.write( myLineChart ); </script>
         <br>
         <b>Related Products: </b>
 
